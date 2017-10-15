@@ -1,0 +1,8 @@
+{
+  "name": "subserve",
+  "version": "1.0.0",
+  "description": "Submarine server",
+  "main": "index.js",
+  "author": "Mohonri Dorff",
+  "license": "MIT"
+}
