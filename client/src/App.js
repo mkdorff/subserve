@@ -6,7 +6,6 @@ class App extends Component {
   state = {cities: []}
 
   async componentDidMount() {
-    console.log
     const response = await fetch('/cities');
     const cities = await response.json();
 
