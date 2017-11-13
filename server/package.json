@@ -17,6 +17,6 @@
   "scripts": {
     "build": "babel . --ignore node_modules,build --out-dir build",
     "start:prod": "node build/server.js",
-    "start": "nodemon -r babel-register server.js"
+    "start": "nodemon -r babel-register src/server.js"
   }
 }
