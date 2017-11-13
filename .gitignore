@@ -1,7 +1,10 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+**/node_modules
+
+# production
+**/build
 
 # env
 .env*
@@ -13,4 +16,6 @@ yarn-error.log*
 ## VS Code
 .vscode/**
 
-.DS_Store
+# Mac Specific
+**/.DS_Store
+
