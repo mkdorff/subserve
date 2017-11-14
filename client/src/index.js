@@ -1,13 +1,31 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'redux-zero/react'
-import store from './redux-zero/store'
-import Routes from './routes'
+import './app.css'
 
-const App = () => (
-  <Provider store={store}>
-    <Routes />
-  </Provider>
-)
+class App extends Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      info: false,
+      w: false,
+      a: false,
+      s: false,
+      d: false,
+      up: false,
+      left: false,
+      down: false,
+      right: false
+    }
+  }
+  
+  render() {
+    return (
+      <div className="app-component">
+        app component
+      </div>
+    )
+  }
+}
 
 ReactDOM.render(<App />, document.getElementById('root'));
