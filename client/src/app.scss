@@ -1,5 +1,11 @@
 @import '_shared.scss';
 
+body {
+  margin: 0;
+  background: $casal;
+}
+
 .app-component {
   @include gotham-book;
+  color: $white;
 }

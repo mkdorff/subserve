@@ -2,7 +2,7 @@
 $black:      #000000;
 $grey:       #464751;
 $white:      #FFFFFF;
-
+$casal:      #325A6C;
 
 // Mixins
 // Fonts
@@ -79,30 +79,4 @@ $white:      #FFFFFF;
 @keyframes fade-out {
   0% { opacity: 1; visibility: visible; }
   100% { opacity: 0; visibility: visible; }
-}
-
-
-// Font Faces
-@font-face {
-  font-family: 'GothamRounded-Book';
-  src: url('assets/fonts/GothamRounded-Book.eot');
-  src: url('assets/fonts/GothamRounded-Book.woff2') format('woff2'),
-       url('assets/fonts/GothamRounded-Book.woff') format('woff'),
-       url('assets/fonts/GothamRounded-Book.ttf') format('truetype'),
-       url('assets/fonts/GothamRounded-Book.svg#GothamRounded-Book') format('svg'),
-       url('assets/fonts/GothamRounded-Book.eot?#iefix') format('embedded-opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'GothamRounded-Medium';
-  src: url('assets/fonts/GothamRounded-Medium.eot');
-  src: url('assets/fonts/GothamRounded-Medium.woff2') format('woff2'),
-       url('assets/fonts/GothamRounded-Medium.woff') format('woff'),
-       url('assets/fonts/GothamRounded-Medium.ttf') format('truetype'),
-       url('assets/fonts/GothamRounded-Medium.svg#GothamRounded-Medium') format('svg'),
-       url('assets/fonts/GothamRounded-Medium.eot?#iefix') format('embedded-opentype');
-  font-weight: normal;
-  font-style: normal;
 }

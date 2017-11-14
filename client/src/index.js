@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import './app.css'
 
+// temp
+import KeyboardButton from './components/KeyboardSet'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -22,7 +25,8 @@ class App extends Component {
   render() {
     return (
       <div className="app-component">
-        app component
+        <canvas className="video-canvas"></canvas>
+        <KeyboardButton />
       </div>
     )
   }
