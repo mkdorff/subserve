@@ -1,12 +1,20 @@
-// Available Fonts
-
-
 // Colors
 $black:      #000000;
 $grey:       #464751;
 $white:      #FFFFFF;
 
+
 // Mixins
+// Fonts
+@mixin gotham-book {
+  font-family: 'GothamRounded-Book';
+}
+
+@mixin gotham-medium {
+  font-family: 'GothamRounded-Medium';
+}
+
+// Breakpoints
 @mixin for-phone-only {
   @media (max-width: 599px) { @content; }
 }
@@ -23,6 +31,7 @@ $white:      #FFFFFF;
   @media (min-width: 1800px) { @content; }
 }
 
+
 // Transitions
 @mixin uniform-transition($property...) {
   $val: ();
@@ -31,6 +40,7 @@ $white:      #FFFFFF;
   }
   transition: $val;
 }
+
 
 // Helpers
 @mixin links($property...) {
@@ -47,7 +57,9 @@ $white:      #FFFFFF;
   }
 }
 
-// Animation Classes
+
+// Animation
+// Classes
 .fade-in {
   animation: fade-in 1s;
   animation-fill-mode: forwards;
@@ -58,7 +70,7 @@ $white:      #FFFFFF;
   animation-fill-mode: forwards;
 }
 
-// Animation Keyframes
+// Keyframes
 @keyframes fade-in {
   0% { opacity: 0; visibility: visible; }
   100% { opacity: 1; visibility: visible; }
@@ -67,4 +79,30 @@ $white:      #FFFFFF;
 @keyframes fade-out {
   0% { opacity: 1; visibility: visible; }
   100% { opacity: 0; visibility: visible; }
+}
+
+
+// Font Faces
+@font-face {
+  font-family: 'GothamRounded-Book';
+  src: url('assets/fonts/GothamRounded-Book.eot');
+  src: url('assets/fonts/GothamRounded-Book.woff2') format('woff2'),
+       url('assets/fonts/GothamRounded-Book.woff') format('woff'),
+       url('assets/fonts/GothamRounded-Book.ttf') format('truetype'),
+       url('assets/fonts/GothamRounded-Book.svg#GothamRounded-Book') format('svg'),
+       url('assets/fonts/GothamRounded-Book.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GothamRounded-Medium';
+  src: url('assets/fonts/GothamRounded-Medium.eot');
+  src: url('assets/fonts/GothamRounded-Medium.woff2') format('woff2'),
+       url('assets/fonts/GothamRounded-Medium.woff') format('woff'),
+       url('assets/fonts/GothamRounded-Medium.ttf') format('truetype'),
+       url('assets/fonts/GothamRounded-Medium.svg#GothamRounded-Medium') format('svg'),
+       url('assets/fonts/GothamRounded-Medium.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
 }

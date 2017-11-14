@@ -1,0 +1,5 @@
+@import '_shared.scss';
+
+.app-component {
+  @include gotham-book;
+}
