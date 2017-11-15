@@ -8,4 +8,16 @@ body {
 .app-component {
   @include gotham-book;
   color: $white;
+
+  .wasd {
+    position: fixed !important;
+    bottom: 25px;
+    left: 25px;
+  }
+
+  .arrows {
+    position: fixed !important;
+    bottom: 25px;
+    right: 25px;
+  }
 }
