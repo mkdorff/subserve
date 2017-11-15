@@ -19,5 +19,8 @@
     "build": "babel . --ignore node_modules,build --out-dir build",
     "start:prod": "node build/server.js",
     "start": "nodemon -r babel-register src/server.js"
+  },
+  "optionalDependencies": {
+    "v4l2camera": "^1.0.4"
   }
 }
