@@ -15,3 +15,10 @@ yarn add v4l2camera
 ```
 
 in the server directory. I am developing on a Mac and that package does not support macOS. 
+
+
+### Things to verify
+
+- socket.io (and path, etc.)
+- camera feed to server still works
+- serial out from server still works

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import './app.css'
 
 import KeyboardSet from './components/KeyboardSet'
+import wasdInfo from './assets/images/wasd-info.png'
+import arrowsInfo from './assets/images/arrows-info.png'
 
 class App extends Component {
   constructor(props) {
@@ -20,6 +22,8 @@ class App extends Component {
       ArrowRight: false
     }
   }
+
+  _handleInfoClick = () => { this.setState({info: true}); }
 
   _handleKeyDown = ({code}) => {
     if (!this.state.hasOwnProperty(code)) return;
@@ -47,8 +51,16 @@ class App extends Component {
     return (
       <div className="app-component">
         <canvas className="video-canvas"></canvas>
+        <div className="info-button" onClick={this._handleInfoClick}>info</div>
         <KeyboardSet arrows={false} className="wasd" states={{KeyW, KeyA, KeyS, KeyD}}/>
         <KeyboardSet arrows={true} className="arrows" states={{ArrowUp, ArrowLeft, ArrowDown, ArrowRight}}/>
+        
+        {/* I will have to deal with this later */}
+        <div className={`info-overlay `}>
+          <img src={wasdInfo} alt="" className="wasd-info"/>
+          <img src={arrowsInfo} alt="" className="arrows-info"/>
+        </div>
+        
       </div>
     )
   }

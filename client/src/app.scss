@@ -9,15 +9,52 @@ body {
   @include gotham-book;
   color: $white;
 
+  .video-canvas {
+    background-color: white;
+  }
+
+  .info-button {
+    position: fixed !important;
+    top: 25px;
+    right: 25px;
+    z-index: 1;
+    cursor: pointer;
+  }
+
   .wasd {
     position: fixed !important;
     bottom: 25px;
     left: 25px;
+    z-index: 1;
   }
 
   .arrows {
     position: fixed !important;
     bottom: 25px;
     right: 25px;
+    z-index: 1;
+  }
+
+  .info-overlay {
+    visibility: hidden;
+    background-color: rgba(0,0,0,0.37);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+
+    .wasd-info {
+      position: absolute;
+      left: 56px;
+      bottom: 84px;
+    }
+
+    .arrows-info {
+      position: absolute;
+      right: 56px;
+      bottom: 84px;
+    }
   }
 }
