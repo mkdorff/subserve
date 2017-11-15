@@ -1,32 +1,22 @@
-import bodyParser, { urlencoded } from 'body-parser'
+import http from 'http'
 import express from 'express'
-import path from 'path'
+import socketio from 'socket.io'
+
+import { sendArduino } from './helpers/arduinoSerial'
+
 const app = express();
+const server = http.Server(app);
+const io = socketio(server);
+const port = process.env.PORT || 3001;
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+server.listen(port, () => {console.log(`Listening on ${port}`); });
 
-// TEMP
-const router = express.Router();
-const staticFiles = express.static(path.join(__dirname, '../../client/build'));
-
-app.use(staticFiles);
-
-router.get('/cities', (req, res) => {
-  const cities = [
-    {name: 'New York City', population: 8175133},
-    {name: 'Los Angeles',   population: 3792621},
-    {name: 'Chicago',       population: 2695598}
-  ];
-  res.json(cities);
-})
-
-app.use(router);
-app.use('/*', staticFiles);
-
-app.set('port', (process.env.PORT || 3001));
-app.listen(app.get('port'), () => {
-  console.log(`Listening on ${app.get('port')}`);
+// Socket Config
+io.on('connection', (socket) => {
+  console.log('User Connected')
+  // socket.emit('video feed', ...)
+  socket.on('control input', (data) => {
+    sendArduino(data);
+  })
 });
 
-// import { sendArduino } from './helpers/arduinoSerial'
