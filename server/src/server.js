@@ -3,6 +3,7 @@ import express from 'express'
 import socketio from 'socket.io'
 
 import { sendArduino } from './helpers/arduinoSerial'
+import v4l2camera from './helpers/camera'
 
 const app = express();
 const server = http.Server(app);

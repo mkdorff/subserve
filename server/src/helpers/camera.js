@@ -1,15 +1,18 @@
-// var v4l2camera = require("v4l2camera");
-import v4l2camera from 'v4l2camera'
-const cam = new v4l2camera.Camera("/dev/video0");
+var v4l2camera = require("v4l2camera");
+import v4l2camera2 from 'v4l2camera'
 
-cam.configSet({width: 352, height: 288}); // Try different sizes
-cam.start();
-cam.capture(function loop() {
-  cam.capture(loop);
-});
+console.log(v4l2camera)
+console.log(v4l2camera2)
+// const cam = new v4l2camera.Camera("/dev/video0");
 
-// Maybe do a socketio con - 
-// also convert yuyv to rgba here. Send raw rgab data through sockets.
+// cam.configSet({width: 352, height: 288}); // Try different sizes
+// cam.start();
+// cam.capture(function loop() {
+//   cam.capture(loop);
+// });
+
+// // Maybe do a socketio con - 
+// // also convert yuyv to rgba here. Send raw rgab data through sockets.
 
 
-export { cam }
+// export { cam }
