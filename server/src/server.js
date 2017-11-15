@@ -1,32 +1,40 @@
-import bodyParser, { urlencoded } from 'body-parser'
+import http from 'http'
 import express from 'express'
-import path from 'path'
-const app = express();
+import socketio from 'socket.io'
+// import bodyParser, { urlencoded } from 'body-parser'
+// import path from 'path'
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+const app = express();
+const server = http.Server(app);
+const io = socketio(server);
+
+// Express Config
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({extended: false}));
 
 // TEMP
-const router = express.Router();
-const staticFiles = express.static(path.join(__dirname, '../../client/build'));
+// const router = express.Router();
+// const staticFiles = express.static(path.join(__dirname, '../../client/build'));
+// app.use(staticFiles); -- I don't think I need this.
 
-app.use(staticFiles);
+// router.get('/cities', (req, res) => ( res.json({name: 'New York City', population: 8175133}) ));
 
-router.get('/cities', (req, res) => {
-  const cities = [
-    {name: 'New York City', population: 8175133},
-    {name: 'Los Angeles',   population: 3792621},
-    {name: 'Chicago',       population: 2695598}
-  ];
-  res.json(cities);
-})
+// app.use(router);
 
-app.use(router);
-app.use('/*', staticFiles);
+// Only if we need to build this
+// const staticFiles = express.static(path.join(__dirname, '../../client/build'));
+// app.use('/*', staticFiles);
 
 app.set('port', (process.env.PORT || 3001));
-app.listen(app.get('port'), () => {
-  console.log(`Listening on ${app.get('port')}`);
-});
+server.listen(app.get('port'), () => {console.log(`Listening on ${app.get('port')}`); });
 
+
+// Socket Config
+io.on('connection', (socket) => {
+  console.log('User Connected')
+  // socket.emit('video feed', ...)
+  socket.on('control input', (data) => {
+    console.log(data);
+  })
+});
 // import { sendArduino } from './helpers/arduinoSerial'

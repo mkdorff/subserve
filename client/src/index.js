@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { emitKeyEvent } from './services/controls'
+import keyEventToCode from './helpers/keyEventToCode'
+import { enforceOnlyOneInput, listenToActiveOnly } from './helpers/sanitizeInputs'
 import './app.css'
 
 import KeyboardSet from './components/KeyboardSet'
 import wasdInfo from './assets/images/wasd-info.png'
 import arrowsInfo from './assets/images/arrows-info.png'
+
 
 class App extends Component {
   constructor(props) {
@@ -27,11 +31,15 @@ class App extends Component {
 
   _handleKeyDown = ({code}) => {
     if (!this.state.hasOwnProperty(code)) return;
+    if (!enforceOnlyOneInput(code, this.state)) return;
+    emitKeyEvent(keyEventToCode(code, true));
     this.setState({[code]: true});
   }
 
   _handleKeyUp = ({code}) => {
     if (!this.state.hasOwnProperty(code)) return;
+    if (!listenToActiveOnly(code, this.state)) return;
+    emitKeyEvent(keyEventToCode(code, false));
     this.setState({[code]: false});
   }
 
