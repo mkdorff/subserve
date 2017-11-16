@@ -3,7 +3,7 @@ import express from 'express'
 import socketio from 'socket.io'
 
 import { sendArduino } from './helpers/arduinoSerial'
-import { sendCameraToSockets }  from './helpers/camera'
+import { captureFeed }  from './helpers/camera'
 
 const app = express();
 const server = http.Server(app);
@@ -21,6 +21,7 @@ io.on('connection', (socket) => {
   })
   
   // pass in socket into function
-  sendCameraToSockets(socket);
+  // sendCameraToSockets(socket);
 });
 
+setInterval(captureFeed, 1000);
