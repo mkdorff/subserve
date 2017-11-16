@@ -8,20 +8,14 @@ try {
   cam = new v4l2camera.Camera("/dev/video0");
   cam.configSet({width: 352, height: 288}); // Try different sizes
   cam.start();
-  
 } catch (err) {
   console.log("The camera module only works in a Pi Enviroment")
 }
 
-export function captureFeed() {
+export async function captureFeed() {
   if (!v4l2camera) return null;
-  
-  let feed = cam.toYUYV();
-  console.log(feed.length);  
+  await cam.capture(() => {
+    feed = cam.toYUYV();
+  });
   return feed;
-  // cam.capture(function loop() {
-    // console.log(cam.toYUYV().length);
-    // socket.emit('video feed', "emitting image...");
-    // cam.capture(loop);
-  // });
 }

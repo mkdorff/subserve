@@ -24,4 +24,4 @@ io.on('connection', (socket) => {
   // sendCameraToSockets(socket);
 });
 
-setInterval(captureFeed, 1000);
+setInterval(captureFeed, 3000);
