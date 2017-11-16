@@ -2,7 +2,7 @@
 // We can't load this other than on a Pi enviroment so we'll need checks
 let v4l2camera = null;
 let cam;
-let feed;
+let feed = null;
 try {
   v4l2camera = require("v4l2camera");
   cam = new v4l2camera.Camera("/dev/video0");
