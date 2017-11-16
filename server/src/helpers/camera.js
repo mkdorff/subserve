@@ -15,8 +15,8 @@ export function sendCameraToSockets(socket) {
   if (!v4l2camera) return;
   
   cam.capture(function loop() {
-    // console.log(cam.toYUYV());
-    socket.emit('video feed', "emitting image...");
+    console.log(cam.toYUYV().length);
+    // socket.emit('video feed', "emitting image...");
     cam.capture(loop);
   });
 }

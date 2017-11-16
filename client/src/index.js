@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import { paintCanvas } from './services/videoStream'
+// import { paintCanvas } from './services/videoStream'
 import { emitKeyEvent } from './services/controls'
 import keyEventToCode from './helpers/keyEventToCode'
 import { enforceOnlyOneInput, listenToActiveOnly } from './helpers/sanitizeInputs'
@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    paintCanvas(this.canvas);
+    // paintCanvas(this.canvas);
   }
 
   componentWillUnmount() {
