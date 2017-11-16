@@ -26,5 +26,5 @@ io.on('connection', (socket) => {
 
 setInterval(async () => {
   let feed = await captureFeed();
-  console.log(feed.length)
+  io.emit('video feed', 'YO I"m sending data!!!')
 }, 3000);
