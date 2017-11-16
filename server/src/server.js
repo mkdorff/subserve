@@ -28,7 +28,5 @@ io.on('connection', (socket) => {
 setInterval(async () => {
   let feed = await captureFeed();
   if (!feed) return;
-  let imageData = new Uint8ClampedArray(405504); 
-  let sendData = await yuyv2rgba(feed, imageData, 352, 288);
-  io.emit('video feed', sendData);
-}, 3000);
+  io.emit('video feed', feed);
+}, 5000);
