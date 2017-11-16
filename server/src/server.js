@@ -24,4 +24,7 @@ io.on('connection', (socket) => {
   // sendCameraToSockets(socket);
 });
 
-setInterval(captureFeed, 3000);
+setInterval(async () => {
+  let feed = await captureFeed();
+  console.log(feed.length)
+}, 3000);
