@@ -8,9 +8,12 @@ body {
 .app-component {
   @include gotham-book;
   color: $white;
+  display: flex;
+  justify-content: center;
 
   .video-canvas {
     background-color: white;
+    min-height: 100vh;
   }
 
   .info-button {

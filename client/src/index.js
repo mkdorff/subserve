@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { paintCanvas } from './services/videoStream'
 import { emitKeyEvent } from './services/controls'
 import keyEventToCode from './helpers/keyEventToCode'
 import { enforceOnlyOneInput, listenToActiveOnly } from './helpers/sanitizeInputs'
@@ -48,6 +49,10 @@ class App extends Component {
     document.addEventListener('keyup', this._handleKeyUp, false);
   }
 
+  componentDidMount() {
+    paintCanvas(this.canvas);
+  }
+
   componentWillUnmount() {
     document.removeEventListener('keydown', this._handleKeyDown, false);
     document.removeEventListener('keyup', this._handleKeyUp, false);
@@ -58,7 +63,7 @@ class App extends Component {
     const { ArrowUp, ArrowLeft, ArrowDown, ArrowRight } = this.state;
     return (
       <div className="app-component">
-        <canvas className="video-canvas"></canvas>
+        <canvas ref={(canvas) => {this.canvas = canvas}} className="video-canvas" width='352' height='288'></canvas>
         <div className="info-button" onClick={this._handleInfoClick}>info</div>
         <KeyboardSet arrows={false} className="wasd" states={{KeyW, KeyA, KeyS, KeyD}}/>
         <KeyboardSet arrows={true} className="arrows" states={{ArrowUp, ArrowLeft, ArrowDown, ArrowRight}}/>
