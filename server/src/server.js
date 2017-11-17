@@ -4,7 +4,7 @@ import socketio from 'socket.io'
 import path from 'path'
 
 import { sendArduino } from './helpers/arduinoSerial'
-import { captureFeed, connectCameraToIO }  from './helpers/camera'
+import { cam }  from './helpers/camera'
 
 const app = express();
 const server = http.Server(app);
@@ -25,5 +25,7 @@ io.on('connection', (socket) => {
     sendArduino(data);
   })
 
-  connectCameraToIO(io);
+  socket.on('video req', () => {
+    io.emit('video feed', Array.from(cam.toYUYV()))
+  })
 });

@@ -8,26 +8,31 @@ try {
   cam = new v4l2camera.Camera("/dev/video0");
   cam.configSet({width: 352, height: 288}); // Try different sizes
   cam.start();
+  cam.capture(function loop() {
+    cam.capture(loop);
+  });
 } catch (err) {
   console.log("The camera module only works in a Pi Enviroment")
 }
 
-export async function captureFeed() {
-  if (!v4l2camera) return null;
-  await cam.capture(function loop() {
-    feed = cam.toYUYV();
-  });
-  return feed;
-}
+export { cam }
 
-// idk if this will work - one more idea after this probably fails
-export async function connectCameraToIO(io) {
-  cam.capture(function loop() {
-    io.emit('video feed', Array.from(cam.toYUYV()));
-    cam.capture(loop);
-  });
+// export async function captureFeed() {
+//   if (!v4l2camera) return null;
+//   await cam.capture(function loop() {
+//     feed = cam.toYUYV();
+//   });
+//   return feed;
+// }
+
+// // idk if this will work - one more idea after this probably fails
+// export async function connectCameraToIO(io) {
+//   cam.capture(function loop() {
+//     io.emit('video feed', Array.from(cam.toYUYV()));
+//     cam.capture(loop);
+//   });
   
-}
+// }
 
 // Interval for capturing/sending video feed
 // setInterval(async () => {
