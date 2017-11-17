@@ -31,7 +31,6 @@ const port = process.env.PORT || 3001;
 
 const staticFiles = express.static(path.join(__dirname, '../../../client/build'));
 app.use(staticFiles);
-app.use('/*', staticFiles);
 app.get('/video-feed', (req, res) => {
   let buffer = Buffer(cam.toYUYV());
   res.set({
@@ -40,6 +39,7 @@ app.get('/video-feed', (req, res) => {
   });
   res.send(buffer);
 });
+app.use('/*', staticFiles);
 
 server.listen(port, () => {console.log(`Listening on ${port}`); });
 

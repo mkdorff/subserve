@@ -16,7 +16,7 @@ export function paintCanvas(canvas) {
       const rgbaRaw = await yuyv2rgba(yuyvRaw, new Uint8ClampedArray(405504), WIDTH, HEIGHT);
       const imageData = new ImageData(rgbaRaw, WIDTH, HEIGHT);
       c2d.putImageData(imageData, 0, 0);
-      setTimeout(load, 50);
+      setTimeout(load, 35);
     }, false);
     req.open("GET", "/video-feed", true);
     req.send();
