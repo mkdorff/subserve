@@ -6,7 +6,7 @@ import path from 'path'
 import { sendArduino } from './helpers/arduinoSerial'
 // import { cam }  from './helpers/camera'
 
-
+var v4l2camera = require("v4l2camera");
 var cam = new v4l2camera.Camera("/dev/video0")
 if (cam.configGet().formatName !== "YUYV") {
     console.log("YUYV camera required");
@@ -43,5 +43,8 @@ io.on('connection', (socket) => {
 });
 
 setInterval(() => {
+  let t0 = performance.now()
   io.emit('video feed', Array.from(cam.toYUYV()))
-}, 1000)
+  let t1 = performance.now()
+  console.log(t1-t0);
+}, 3000)
