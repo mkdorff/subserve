@@ -20,11 +20,9 @@ io.on('connection', (socket) => {
   socket.on('control input', (data) => {
     sendArduino(data);
   })
-  
-  // pass in socket into function
-  // sendCameraToSockets(socket);
 });
 
+// Interval for capturing/sending video feed
 setInterval(async () => {
   let feed = await captureFeed();
   if (!feed) return;

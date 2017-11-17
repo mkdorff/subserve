@@ -50,8 +50,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // paintCanvas(this.canvas);
-    paintCanvas();
+    paintCanvas(this.canvas);
   }
 
   componentWillUnmount() {
