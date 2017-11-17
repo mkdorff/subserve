@@ -1,15 +1,21 @@
-// var v4l2camera = require("v4l2camera");
-import v4l2camera from 'v4l2camera'
-const cam = new v4l2camera.Camera("/dev/video0");
 
-cam.configSet({width: 352, height: 288}); // Try different sizes
-cam.start();
-cam.capture(function loop() {
-  cam.capture(loop);
-});
+// We can't load this other than on a Pi enviroment so we'll need checks
+let v4l2camera = null;
+let cam;
+let feed = null;
+try {
+  v4l2camera = require("v4l2camera");
+  cam = new v4l2camera.Camera("/dev/video0");
+  cam.configSet({width: 352, height: 288}); // Try different sizes
+  cam.start();
+} catch (err) {
+  console.log("The camera module only works in a Pi Enviroment")
+}
 
-// Maybe do a socketio con - 
-// also convert yuyv to rgba here. Send raw rgab data through sockets.
-
-
-export { cam }
+export async function captureFeed() {
+  if (!v4l2camera) return null;
+  await cam.capture(() => {
+    feed = cam.toYUYV();
+  });
+  return feed;
+}
