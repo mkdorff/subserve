@@ -4,20 +4,26 @@ import socketio from 'socket.io'
 import path from 'path'
 
 import { sendArduino } from './helpers/arduinoSerial'
-// import { cam }  from './helpers/camera'
 
-var v4l2camera = require("v4l2camera");
-var cam = new v4l2camera.Camera("/dev/video0")
-if (cam.configGet().formatName !== "YUYV") {
-    console.log("YUYV camera required");
-    process.exit(1);
-}
-cam.configSet({width: 352, height: 288});
-cam.start();
-cam.capture(function loop() {
+
+// Camera Config
+let v4l2camera = null;
+let cam;
+let feed = null;
+try {
+  v4l2camera = require("v4l2camera");
+  cam = new v4l2camera.Camera("/dev/video0");
+  cam.configSet({width: 352, height: 288}); // Try different sizes
+  cam.start();
+  cam.capture(function loop() {
     cam.capture(loop);
-});
+  });
+} catch (err) {
+  console.log("The camera module only works in a Pi Enviroment")
+}
 
+
+// App Config
 const app = express();
 const server = http.Server(app);
 const io = socketio(server);
@@ -26,8 +32,17 @@ const port = process.env.PORT || 3001;
 const staticFiles = express.static(path.join(__dirname, '../../../client/build'));
 app.use(staticFiles);
 app.use('/*', staticFiles);
+app.get('/video-feed', (req, res) => {
+  let buffer = Buffer(cam.toYUYV());
+  res.set({
+    "content-type": "image/vnd-raw",
+    "content-length": buffer.length,
+  });
+  res.send(buffer);
+});
 
 server.listen(port, () => {console.log(`Listening on ${port}`); });
+
 
 // Socket Config
 io.on('connection', (socket) => {
@@ -36,15 +51,4 @@ io.on('connection', (socket) => {
   socket.on('control input', (data) => {
     sendArduino(data);
   })
-
-  // socket.on('video req', () => {
-  //   io.emit('video feed', Array.from(cam.toYUYV()))
-  // })
 });
-
-setInterval(() => {
-  let t0 = performance.now()
-  io.emit('video feed', Array.from(cam.toYUYV()))
-  let t1 = performance.now()
-  console.log(t1-t0);
-}, 3000)
