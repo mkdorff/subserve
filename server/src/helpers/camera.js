@@ -20,6 +20,19 @@ export async function captureFeed() {
   return feed;
 }
 
+// idk if this will work - one more idea after this probably fails
 export async function connectCameraToIO(io) {
-  io.emit('video feed', "hey");
+  cam.capture(function loop() {
+    io.emit('video feed', Array.from(cam.toYUYV()));
+    cam.capture(loop);
+  });
+  
 }
+
+// Interval for capturing/sending video feed
+// setInterval(async () => {
+//   let feed = await captureFeed();
+//   if (!feed) return;
+
+//   io.emit('video feed', Array.from(feed));
+// }, 1000);
