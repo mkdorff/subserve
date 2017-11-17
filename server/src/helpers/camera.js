@@ -20,7 +20,6 @@ export async function captureFeed() {
   return feed;
 }
 
-export async function grabSocket(socket) {
-  console.log(`fake socket:`)
-  console.log(socket);
+export async function connectCameraToIO(io) {
+  io.emit('video feed', "hey");
 }
