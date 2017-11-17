@@ -9,6 +9,7 @@ import './app.css'
 import KeyboardSet from './components/KeyboardSet'
 import wasdInfo from './assets/images/wasd-info.png'
 import arrowsInfo from './assets/images/arrows-info.png'
+import infoCopy from './assets/copy/info'
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
     super(props)
     
     this.state = {
+      init: true,
       info: false,
       KeyW: false,
       KeyA: false,
@@ -28,7 +30,9 @@ class App extends Component {
     }
   }
 
-  _handleInfoClick = () => { this.setState({info: true}); }
+  _handleInfoClick = () => { this.setState({info: true, init: false}); }
+  
+  _handleInfoCloseClick = () => { this.setState({info: false}); }
 
   _handleKeyDown = ({code}) => {
     if (!this.state.hasOwnProperty(code)) return;
@@ -61,15 +65,20 @@ class App extends Component {
   render() {
     const { KeyW, KeyA, KeyS, KeyD } = this.state;
     const { ArrowUp, ArrowLeft, ArrowDown, ArrowRight } = this.state;
+    const { info, init } = this.state;
     return (
       <div className="app-component">
         <canvas ref={(canvas) => {this.canvas = canvas}} className="video-canvas" width='352' height='288'></canvas>
-        <div className="info-button" onClick={this._handleInfoClick}>info</div>
+        {!info && <div className="info-button" onClick={this._handleInfoClick}>info</div>}
         <KeyboardSet arrows={false} className="wasd" states={{KeyW, KeyA, KeyS, KeyD}}/>
         <KeyboardSet arrows={true} className="arrows" states={{ArrowUp, ArrowLeft, ArrowDown, ArrowRight}}/>
         
-        {/* I will have to deal with this later */}
-        <div className={`info-overlay `}>
+        <div className={`info-overlay${info ? ' show fade-in' : ` ${init ? '' : 'fade-out'}`}`}>
+          <div className="info-close-button" onClick={this._handleInfoCloseClick}>X</div>
+          <div className="info">
+            <div className="title">Remote Controlled Submarine</div>
+            {infoCopy.map((text, i) => <div key={i} className="info-body">{text}</div>)}
+          </div>
           <img src={wasdInfo} alt="" className="wasd-info"/>
           <img src={arrowsInfo} alt="" className="arrows-info"/>
         </div>

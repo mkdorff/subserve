@@ -61,12 +61,12 @@ $casal:      #325A6C;
 // Animation
 // Classes
 .fade-in {
-  animation: fade-in 1s;
+  animation: fade-in 0.3s;
   animation-fill-mode: forwards;
 }
 
 .fade-out {
-  animation: fade-out 1s;
+  animation: fade-out 0.3s;
   animation-fill-mode: forwards;
 }
 
@@ -78,5 +78,6 @@ $casal:      #325A6C;
 
 @keyframes fade-out {
   0% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: visible; }
+  99% { opacity: 0; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
 }

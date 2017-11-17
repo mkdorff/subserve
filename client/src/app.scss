@@ -47,17 +47,45 @@ body {
     left: 0;
     bottom: 0;
     z-index: 2;
+    display: flex;
+    justify-content: center;
+
+    .info-close-button {
+      position: absolute;
+      font-size: 20px;
+      top: 25px;
+      right: 25px;
+      cursor: pointer;
+    }
+
+    .info {
+      text-align: justify;
+      width: 95%;
+      max-width: 500px;
+      margin-top: 60px;
+      font-size: 18px;
+      .title { @include gotham-medium; }
+      .info-body { margin-bottom: 25px; }
+    }
 
     .wasd-info {
       position: absolute;
-      left: 56px;
-      bottom: 84px;
+      width: 272px;
+      height: 253px;
+      left: 27px;
+      bottom: 105px;
     }
 
     .arrows-info {
       position: absolute;
-      right: 56px;
-      bottom: 84px;
+      width: 272px;
+      height: 253px;
+      right: 27px;
+      bottom: 105px;
     }
+  }
+
+  .show {
+    visibility: visible;
   }
 }
