@@ -4,7 +4,6 @@ import socketio from 'socket.io'
 
 import { sendArduino } from './helpers/arduinoSerial'
 import { captureFeed }  from './helpers/camera'
-import { yuyv2rgba } from './helpers/yuyv2rgba'
 
 const app = express();
 const server = http.Server(app);
@@ -28,4 +27,4 @@ setInterval(async () => {
   if (!feed) return;
 
   io.emit('video feed', Array.from(feed));
-}, 5000);
+}, 1000);
