@@ -21,19 +21,5 @@ export function paintCanvas(canvas) {
     req.open("GET", "/video-feed", true);
     req.send();
   })()
-
-  // setInterval(() => {
-  //   // socket.on('video feed', async (data) => {
-  //   //   console.log(data);
-  //   // });
-  //   socket.on('video feed', async (data) => {
-  //     const yuyvRaw = Uint8Array.from(data);
-  //     const rgbaRaw = await yuyv2rgba(yuyvRaw, new Uint8ClampedArray(405504), WIDTH, HEIGHT);
-  //     const imageData = new ImageData(rgbaRaw, WIDTH, HEIGHT);
-  //     c2d.putImageData(imageData, 0, 0);
-  //   });
-  //   socket.emit('video req');
-  // }, 1000)
-
 }
 
