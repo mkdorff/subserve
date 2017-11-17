@@ -72,7 +72,6 @@ class App extends Component {
         {!info && <div className="info-button" onClick={this._handleInfoClick}>info</div>}
         <KeyboardSet arrows={false} className="wasd" states={{KeyW, KeyA, KeyS, KeyD}}/>
         <KeyboardSet arrows={true} className="arrows" states={{ArrowUp, ArrowLeft, ArrowDown, ArrowRight}}/>
-        
         <div className={`info-overlay${info ? ' show fade-in' : ` ${init ? '' : 'fade-out'}`}`}>
           <div className="info-close-button" onClick={this._handleInfoCloseClick}>X</div>
           <div className="info">
@@ -82,7 +81,6 @@ class App extends Component {
           <img src={wasdInfo} alt="" className="wasd-info"/>
           <img src={arrowsInfo} alt="" className="arrows-info"/>
         </div>
-        
       </div>
     )
   }
