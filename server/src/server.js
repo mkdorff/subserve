@@ -4,7 +4,7 @@ import socketio from 'socket.io'
 import path from 'path'
 
 import { sendArduino } from './helpers/arduinoSerial'
-import { captureFeed }  from './helpers/camera'
+import { captureFeed, grabSocket }  from './helpers/camera'
 
 const app = express();
 const server = http.Server(app);
@@ -24,12 +24,16 @@ io.on('connection', (socket) => {
   socket.on('control input', (data) => {
     sendArduino(data);
   })
+
+  console.log(`real socket:`)
+  console.logs(socket)
+  grabSocket(socket)
 });
 
 // Interval for capturing/sending video feed
-setInterval(async () => {
-  let feed = await captureFeed();
-  if (!feed) return;
+// setInterval(async () => {
+//   let feed = await captureFeed();
+//   if (!feed) return;
 
-  io.emit('video feed', Array.from(feed));
-}, 1000);
+//   io.emit('video feed', Array.from(feed));
+// }, 1000);

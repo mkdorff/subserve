@@ -14,8 +14,13 @@ try {
 
 export async function captureFeed() {
   if (!v4l2camera) return null;
-  await cam.capture(() => {
+  await cam.capture(function loop() {
     feed = cam.toYUYV();
   });
   return feed;
+}
+
+export async function grabSocket(socket) {
+  console.log(`fake socket:`)
+  console.log(socket);
 }
