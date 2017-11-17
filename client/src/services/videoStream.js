@@ -6,7 +6,9 @@ const socket = io();
 export function paintCanvas() {
   // console.log(canvas);
   socket.on('video feed', (data) => {
-    console.log(data.length);
+    const yuyvRaw = Uint8Array.from(data);
+    // console.log(yuyvRaw);
+    // console.log(Object.prototype.toString.call(yuyvRaw));
     // let imageData = new ImageData(data, 352, 288);
     // console.log(imageData);
   })
